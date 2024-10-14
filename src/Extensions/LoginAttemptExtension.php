@@ -36,13 +36,12 @@ class LoginAttemptExtension extends Extension
         return $logger;
     }
 
-    public function onAfterWrite()
+    public function onAfterWrite(): void
     {
         if ($logger = $this->getLogger()) {
             $logger->info(
                 'Login ' . $this->getOwner()->Status
                 . ' - host: ' . $this->getOwner()->IP
-                . ' - member: ' . ((($member = $this->getOwner()->Member()) && $member->exists()) ? $member->Email : 'none')
             );
         }
     }

@@ -23,16 +23,19 @@ Then run dev/build.
 
 ### configure Silverstripe log file location
 
-For Silverstripe, add the following config:
+By default, the login attempts are logged to `silverstripe-login.log` in the base folder of your project.
+
+You can change the log file location by adding the following Silverstripe config:
 
 ```yaml
 Innoweb\SilverstripeFail2Ban\Extensions\LoginAttemptExtension:
-  login_logfile: '/var/log/silverstripe-login.log'
+  login_logfile: 'your/path/to/silverstripe-login.log'
 ```
+
 Alternatively, you can set the log file location in your `.env` file:
 
 ```dotenv
-FAIL2BAN_LOGIN_LOGFILE=/var/log/silverstripe-login.log
+FAIL2BAN_LOGIN_LOGFILE=your/path/to/silverstripe-login.log
 ```
 ## configure Fail2ban jail
 
@@ -49,14 +52,14 @@ before = common.conf
 
 datepattern = \[%%Y-%%m-%%dT%%H:%%M:%%S.%%f%%z\]
 
-failregex = ^ ss-fail2ban\.INFO: Login Failure - host: <HOST> - member: \S+ \[\] \[\]$
+failregex = ^ ss-fail2ban\.INFO: Login Failure - host: <HOST> \[\] \[\]$
 
 ignoreregex = 
 
 # DEV Notes:
 #
-# pattern :     [2024-10-14T11:47:16.259637+11:00] ss-fail2ban.INFO: Login Failure - host: 127.0.0.1 - member: none [] []
-#               [2024-10-14T11:47:16.259637+11:00] ss-fail2ban.INFO: Login Failure - host: 127.0.0.1 - member: email@host.tld [] []
+# pattern :     [2024-10-14T11:47:16.259637+11:00] ss-fail2ban.INFO: Login Failure - host: 127.0.0.1 [] []
+#               [2024-10-14T11:47:16.259637+11:00] ss-fail2ban.INFO: Login Failure - host: 127.0.0.1 [] []
 ```
 
 Add the following to your `/etc/fail2ban/jail.local` to enable the filter:
@@ -64,7 +67,7 @@ Add the following to your `/etc/fail2ban/jail.local` to enable the filter:
 ```
 [silverstripe-login]
 enabled	= true
-logpath = /var/log/silverstripe-login.log
+logpath = /your/path/to/silverstripe-login.log
 ```
 
 ## License
