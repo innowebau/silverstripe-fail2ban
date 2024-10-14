@@ -10,6 +10,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Environment;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Security\LoginAttempt;
 
 class LoginAttemptExtension extends Extension
 {
@@ -38,9 +39,9 @@ class LoginAttemptExtension extends Extension
 
     public function onAfterWrite(): void
     {
-        if ($logger = $this->getLogger()) {
+        if ($logger = $this->getLogger() && $this->getOwner()->Status === LoginAttempt::FAILURE) {
             $logger->info(
-                'Login ' . $this->getOwner()->Status
+                'Login Failure'
                 . ' - host: ' . $this->getOwner()->IP
             );
         }
