@@ -1,0 +1,13 @@
+---
+Name: login-logging
+---
+SilverStripe\Security\LoginAttempt:
+  extensions:
+    - Innoweb\SilverstripeFail2Ban\Extensions\LoginAttemptExtension
+
+SilverStripe\Core\Injector\Injector:
+  Innoweb\SilverstripeFail2Ban\Logger:
+    type: singleton
+    class: Monolog\Logger
+    constructor:
+      - 'ss-fail2ban'

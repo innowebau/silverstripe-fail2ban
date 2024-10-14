@@ -1,0 +1,20 @@
+{
+	"name": "innoweb/silverstripe-fail2ban",
+	"description": "Logs failed logins into a separate log file to be consumed by Fail2ban to block IPs with failed logins.",
+	"type": "silverstripe-vendormodule",
+	"license": "BSD-3-Clause",
+	"keywords": ["silverstripe", "login", "fail2ban"],
+	"homepage": "http://github.com/innowebau/silverstripe-fail2ban",
+	"authors": [{
+		"name": "Florian Thoma",
+		"homepage": "https://www.innoweb.com.au"
+	}],
+	"require": {
+		"silverstripe/framework": "^5"
+    },
+	"autoload": {
+		"psr-4": {
+			"Innoweb\\SilverstripeFail2Ban\\": "src/"
+		}
+	}
+}
