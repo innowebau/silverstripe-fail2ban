@@ -7,6 +7,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Psr\Log\LoggerInterface;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Environment;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
 
@@ -18,7 +19,11 @@ class LoginAttemptExtension extends Extension
     {
         $logger = null;
         try {
-            $logfile = Config::inst()->get(self::class, 'login_logfile');
+            if (Environment::hasEnv('FAIL2BAN_LOGIN_LOGFILE')) {
+                $logfile = Environment::getEnv('FAIL2BAN_LOGIN_LOGFILE');
+            } else {
+                $logfile = Config::inst()->get(self::class, 'login_logfile');
+            }
             if (!str_starts_with('/', $logfile)) {
                 $logfile = BASE_PATH . DIRECTORY_SEPARATOR . $logfile;
             }

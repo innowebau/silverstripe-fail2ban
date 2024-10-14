@@ -25,11 +25,15 @@ Then run dev/build.
 
 For Silverstripe, add the following config:
 
-```
+```yaml
 Innoweb\SilverstripeFail2Ban\Extensions\LoginAttemptExtension:
   login_logfile: '/var/log/silverstripe-login.log'
 ```
+Alternatively, you can set the log file location in your `.env` file:
 
+```dotenv
+FAIL2BAN_LOGIN_LOGFILE=/var/log/silverstripe-login.log
+```
 ## configure Fail2ban jail
 
 Add the Fail2ban filter to `/etc/fail2ban/filter.d/silverstripe-login.conf`:
