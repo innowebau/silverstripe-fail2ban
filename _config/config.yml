@@ -1,5 +1,5 @@
 ---
-Name: login-logging
+Name: fail2ban
 ---
 SilverStripe\Security\LoginAttempt:
   extensions:
