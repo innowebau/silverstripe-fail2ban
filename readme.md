@@ -37,7 +37,8 @@ Alternatively, you can set the log file location in your `.env` file:
 ```dotenv
 FAIL2BAN_LOGIN_LOGFILE=your/path/to/silverstripe-login.log
 ```
-## configure Fail2ban jail
+
+### configure Fail2ban jail
 
 Add the Fail2ban filter to `/etc/fail2ban/filter.d/silverstripe-login.conf`:
 
