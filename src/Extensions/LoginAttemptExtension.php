@@ -16,7 +16,7 @@ class LoginAttemptExtension extends Extension
 {
     private static $login_logfile = 'silverstripe-login.log';
 
-    public static function getLogger()
+    private function getLogger()
     {
         $logger = null;
         try {
@@ -39,7 +39,7 @@ class LoginAttemptExtension extends Extension
 
     public function onAfterWrite(): void
     {
-        if ($logger = $this->getLogger() && $this->getOwner()->Status === LoginAttempt::FAILURE) {
+        if (($logger = $this->getLogger()) && $this->getOwner()->Status === LoginAttempt::FAILURE) {
             $logger->info(
                 'Login Failure'
                 . ' - host: ' . $this->getOwner()->IP
